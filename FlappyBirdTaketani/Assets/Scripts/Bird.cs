@@ -5,6 +5,9 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     public float upForce = 200f;
+    public AudioSource audio;
+    public AudioClip Assets_Sounds_fly;
+    public AudioClip Assets_Sounds_die;
 
     private bool isDead = false;
     private Rigidbody2D rb2d;
@@ -25,6 +28,8 @@ public class Bird : MonoBehaviour
                 rb2d.velocity = Vector2.zero;
                 rb2d.AddForce(new Vector2(0, upForce));
                 anim.SetTrigger("Flap");
+                audio.clip = Assets_Sounds_fly;
+                audio.Play();
             }
         }
     }
@@ -35,5 +40,7 @@ public class Bird : MonoBehaviour
         isDead = true;
         anim.SetTrigger("Die");
         GameControl.instance.BirdDied();
+        audio.clip = Assets_Sounds_die;
+        audio.Play();
     }
 }
