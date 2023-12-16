@@ -15,6 +15,8 @@ public class GameControl : MonoBehaviour {
 
     public bool gameOver = false;
     public float scrollSpeed = -1.5f;
+    public AudioSource audio;
+    public AudioClip scoreClip;
 
     private int score = 0;
 
@@ -46,6 +48,8 @@ public class GameControl : MonoBehaviour {
         }
         score++;
         ScoreText.text = "Score: " + score.ToString();
+        audio.clip = scoreClip;
+        audio.Play();
     }
 
     public void BirdDied()
